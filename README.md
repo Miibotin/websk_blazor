@@ -1,6 +1,6 @@
 # Blazor
 
-<img src="https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2019/04/BrandBlazor_nohalo_1000x.png" alt="blazor" style="margin-left:auto;margin-right:auto;width:225px;">
+<img src="https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2019/04/BrandBlazor_nohalo_1000x.png" alt="blazor" width="225" heigth="225" style="margin-left:auto;margin-right:auto;display:block;">
 
 ### Sisällyksen pöytä
 
