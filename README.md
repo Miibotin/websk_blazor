@@ -22,7 +22,7 @@ Kattavan luokkakirjaston lisäksi muita .NET:n ominaisuuksia voi lukea [**täst�
 
 ## ASP.NET<div>
 
-Jos C#-kielellä halutaan luoda dynaamisia nettisivuja/applikaatioita, pelkkä .NET-kehys ei siihen riitä. Tätä varten Microsoft on kehittänyt ASP.NET-ohjelmistokehyksen .NET:n rinnalle. ASP<span>.NET on vapaata lähdekoodia ja sisältää omien (ja perus .NET:n) luokkakirjastojen lisäksi valmiita kehyksiä websovellusten tekoon, kuten [MVC](https://docs.microsoft.com/fi-fi/aspnet/core/mvc/overview?view=aspnetcore-3.0), [Entity Framework](https://docs.microsoft.com/en-us/ef/) ja [Web Forms](https://docs.microsoft.com/fi-fi/aspnet/web-forms/). Blazor on ASP.NET-perheen uusin lisäys, minkä ensimmäinen versio lisättiin ASP<span>.NET Core versiossa 3.0 (kirjoitushetkellä uusin virallinen julkaisu).
+Jos C#-kielellä halutaan luoda dynaamisia nettisivuja/applikaatioita, pelkkä .NET-kehys ei siihen riitä. Tätä varten Microsoft on kehittänyt ASP.NET-ohjelmistokehyksen .NET:n rinnalle. ASP<span>.NET on vapaata lähdekoodia ja sisältää omien (ja perus .NET:n) luokkakirjastojen lisäksi valmiita kehyksiä websovellusten tekoon, kuten [MVC](https://docs.microsoft.com/fi-fi/aspnet/core/mvc/overview?view=aspnetcore-3.0) ja [Web Forms](https://docs.microsoft.com/fi-fi/aspnet/web-forms/). Blazor on ASP.NET-perheen uusin lisäys, minkä ensimmäinen versio lisättiin ASP<span>.NET Core versiossa 3.0 (kirjoitushetkellä uusin virallinen julkaisu).
 
 ```c#
 @{
@@ -61,9 +61,80 @@ _Yllä olevassa kuvassa [w3schools-sivulta](https://www.w3schools.com/asp/showfi
 
 # Mikä on Blazor?
 
-Blazor toimii samalla tavalla kuten moni Front-end sovelluskehys, millä pystyy luomaan SPA-sovelluksia. Blazorin rakenne perustuu komponentteihin, millä voidaan hajauttaa sovelluksen kokonaisuuksia pienempiin osioihin. Tämä helpottaa koodin lukua, sekä myös mahdollistaa saman ominaisuuden käytön muualla sovelluksessa ilman uudelleenkirjoittamista. Näitä komponentteja voidaan sitten käyttää lapsikomponentteina muissa komponenteissa.
+Blazor toimii samalla tavalla kuten moni Front-end sovelluskehys, millä pystyy luomaan SPA-sovelluksia. Blazorin rakenne perustuu Razor-komponentteihin, millä voidaan hajauttaa sovelluksen kokonaisuuksia pienempiin osioihin. Tämä helpottaa koodin lukua, sekä myös mahdollistaa saman ominaisuuden käytön muualla sovelluksessa ilman uudelleenkirjoittamista.
 
-Komponentit ovat Razor-tiedostoja, mitkä käyttävät ASP<span>.NET:n omaa [Razor-syntaksia](https://docs.microsoft.com/fi-fi/aspnet/core/mvc/views/razor?view=aspnetcore-3.1). Razor syntaksi yhdistää Html- ja C#-kielet samaan tiedostoon, jotta komponentin logiikka ja ulkoasu pystytään tuottamaan samassa tiedostossa.
+Razor-komponenttien tiedostotyyppi on .razor, mikä käyttää ASP<span>.NET:n omaa [Razor-syntaksia](https://docs.microsoft.com/fi-fi/aspnet/core/mvc/views/razor?view=aspnetcore-3.1). Razor syntaksi yhdistää Html- ja C#-kielet samaan tiedostoon, jotta komponentin logiikka ja ulkoasu pystytään tuottamaan samassa tiedostossa. ```@```-symboli erottaa C#-koodin html-kielestä.
+
+## Rakenne
+
+## Esimerkki
+
+Esimerkkiä varten luodaan uusi Blazor-projekti ```dotnet new blazorwasm -o {projektin nimi}```, mikä luo uuden projektin hakemistoineen päivineen Blazor sovellukselle, käytten WebAssembly-mallia. Toimii myös Blazor Server-mallilla kirjoittamalla ```dotnet new blazorserver -o {projektin nimi}```. Voit testata luonnin onnistumisen siirtymällä projektin hakemistoon ja ajamalla sovellus komennolla ```dotnet run```. Uusi Blazor-sovellus pitäisi näyttää alla olevan kuvan mukaiselta ja se löytyy osoitteesta [http://localhost:5000/](http://localhost:5000/).
+
+![](./Kuvat/blazor_newproject.png)
+
+Jatketaan esimerkkiä lisäämällä siihen logiikkaa. Luodaan simppeli valuutanvaihto-komponentti sovellukselle. Sovellus käyttää valmiiksi asennettua Bootstrap tyylikehystä. (_Tosin hyvin pieniä muutoksia tuli tehtyä sovelluksen globaaliin style.css-tiedostoon._) 
+
+``` c#
+<!-- CurrencyConverter.razor -komponentti -->
+
+<h3>Eurot dollareiksi!</h3>
+
+<div class="input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">€</span>
+    </div>
+    <input type="text" class="form-control" @bind="euros">
+</div>
+
+<button type="button" @onclick="Convert" class="btn btn-dark">Muuta!</button>
+
+<div class="input-group mb-3">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">$</span>
+    </div>
+    <input type="text" disabled class="form-control" @bind="dollars">
+</div>
+
+@code {
+
+    private double euros { get; set; }
+    private double dollars { get; set; }
+
+    private void Convert() {
+        dollars = euros * 1.44;
+    }
+}
+```
+Yllä luodussa CurrencyConverter-komponentissa logiikka toimii seuraavasti: Käyttäjä kirjoittaa muutettavan arvon ylempään ```<input>``` elementtiin, joka bindaa arvon ```@bind``` parametrin sisältävään muuttujaan. Tämän jälkeen kun käyttäjä painaa ```<button>``` painiketta, elementin sisältämä ```@onclick``` funktio aktivoidaan, mikä kutsuu ```@code``` lohkossa löytyvää metodia. Dollariksi käännetty rahasumma annetaan toiselle muuttujalle, mikä on vuorostaan bindattu alempaan ```<input>``` elementtiin.
+
+![](./Kuvat/blazor_laskuri.png)
+
+Komponentin lopputulos näyttää yllä olevan kuvan mukaiselta. Koodia pystyisi nyt käyttämään, kuhan siihen päästään käsiksi sovelluksen kautta. Kaksi vaihtoehtoa löytyy: joko komponentille asetetaan polku ```@page``` direktiivillä, tai sisällyttämällä se komponenttiin mistä löytyy jo kyseinen direktiivi.
+
+``` html
+<!-- Index.razor -komponentti. "/" merkitsee kyseisen sivukomponentin polkua, tässä tilanteessa toimien sovelluksen etusivuna. -->
+
+@page "/"
+
+<main>
+    <h1>Blazor perusteet!</h1>
+
+    <p>Sisällytetään vähän komponentteja!</p>
+
+    <CurrencyConverter />
+</main>
+```
+
+```<CurrencyConverter />``` elementti sisältää ylhäällä luodun valuutanvaihto-komponentin. (_Elementin nimi pitää täsmätä tarkkaan komponentin tiedostonimen kanssa. Koska komponenttini sijaitsee Components-kansiossa, se täytyy ottaa käyttöön __Imports.razor-tiedostossa._) Tämän jälkeen sovellusta voidaan nähdä jälleen ```dotnet run```-komennolla.
+
+_Vinkki: komennolla ```dotnet watch run``` sovellus päivittyy automaattisesti ja muutoksia varten tarvitsee vain päivittää sivu. Ei tarvitse sietää ```run```-komennon sulku ja käynnistys rumbaa._
+
+![](./Kuvat/blazor_updated.png)
+
+_Tähän vielä komponentin parametreista!_
+
+Lisää Blazorin ominaisuuksista (layouts, services, routing jne.) Myöhemmässä kappaleessa.
 
 Blazorista on kirjoitushetkellä saatavilla 2 versiota, joiden toiminnallisuus eroaa vain tavasta tuoda sovellus loppukäyttäjälle.
 
@@ -72,6 +143,8 @@ Blazorista on kirjoitushetkellä saatavilla 2 versiota, joiden toiminnallisuus e
 [**Blazorin Github-repositorio**](https://github.com/aspnet/Blazor)
 
 [**Kattava ja ajankohtainen luento Blazorista**](https://www.youtube.com/watch?v=6BT2AF9PO5g)
+
+# Blazorin mallit
 
 ## Blazor Server
 
