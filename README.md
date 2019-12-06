@@ -84,7 +84,7 @@ Täysin uudesta Blazor-projektista löytyy tiedostoja ja hakemistoja, joista on 
 - **Pages/_Host.cshtml** **(Blazor Server)** - Sovelluksen juuritiedosto, mikä renderöinnin jälkeen lähetetään käyttäjälle. Sisältää Razor-syntaksia ja hoitaa App-komponentin renderöinnin. blazor.server.js-tiedosto implementoidaan mukaan, mikä asettaa yhteyden palvelimen ja selaimen välille SignalR:n avulla.
 - **App.razor** - Sovelluksen pääkomponentti, joka hoitaa käyttäjäpuolen reititystä.
 - **Pages** - Hakemisto komponenteille mitkä on määritetty sivuiksi ```@page```-direktiivillä, joita voidaan hakea reitityksellä.
-- **_Imports.razor** - Sisällyttää kaikki yleiset Razor-komponentin tarvittavat ominaisuudet ja luokat. Käyttäjä voi sisällyttää omia hakemistoja ja niiden komponentteja tai tiedostoja ```@using {projektin_nimi}.{hakemiston_nimi}```-esimerkillä.
+- **_Imports.razor** - Sisällyttää kaikki yleiset sovelluksen tarvittavat kirjastot ja luokat. Käyttäjä voi sisällyttää omia hakemistoja ja niiden komponentteja tai tiedostoja ```@using {projektin_nimi}.{hakemiston_nimi}```-esimerkillä.
 
 ## Esimerkki
 
@@ -164,14 +164,7 @@ Ensimmäinen muutos tapahtuu CurrencyConverter-komponentissa, mihin käydään t
 
 <div class="input-group">
     <div class="input-group-prepend">
-    @if(WhichCurrency == "euros")
-    { 
-        <span class="input-group-text" id="basic-addon1">€</span>
-    }
-    else
-    {
-        <span class="input-group-text" id="basic-addon1">$</span>   
-    }
+        <span class="input-group-text" id="basic-addon1">@(WhichCurrency == "euros" ? "€" : "$")</span>
     </div>
     <input type="text" class="form-control" @bind=Value>
 </div>
@@ -179,15 +172,8 @@ Ensimmäinen muutos tapahtuu CurrencyConverter-komponentissa, mihin käydään t
 <button type="button" @onclick=Convert class="btn btn-dark">Muuta!</button>
 
 <div class="input-group">
-    <div class="input-group-prepend">
-    @if(WhichCurrency == "euros")
-    {       
-        <span class="input-group-text" id="basic-addon1">$</span>
-    }
-    else
-    {
-        <span class="input-group-text" id="basic-addon1">€</span>       
-    }
+    <div class="input-group-prepend">     
+        <span class="input-group-text" id="basic-addon1">@(WhichCurrency == "euros" ? "$" : "€")</span>
     </div>
     <input type="text" disabled class="form-control" @bind=ChangedValue>
 </div>
@@ -203,20 +189,19 @@ Ensimmäinen muutos tapahtuu CurrencyConverter-komponentissa, mihin käydään t
     private double Value { get; set; }
     private double ChangedValue { get; set; }
 
-    private void Convert() 
-    {
+    private void Convert() {
         if(WhichCurrency == "euros") 
         {
-            ChangedValue = Value * 1.44;
+            ChangedValue = Math.Round(Value * 1.44, 2);
         } else 
         {
-            ChangedValue = Value * 0.71;
+            ChangedValue = Math.Round(Value * 0.71, 2);
         }
     }
 }
 ```
 
-Komponentin muutokset ovat seuraavat: Code-lohkoon on lisätty 2 uutta **julkista** komponenttia, ```WhichCurrency``` ja ```ComponentTitle``` ( _Huomioi myös muutokset alkuperäisiin muuttujiin ja funktioon_ ). Näille on annettu ```Component parameter```-määrittely ```[Parameter]``` ominaisuudella. Nyt näiden kahden muuttujan arvoihin pääsee käsiksi komponentin ulkopuolelta, mikä auttaa huomattavasti komponentin interaktiivisuuteen. Html osion sisälle on myös sisällytetty ```ComponentTitle```-muuttujan mukaan otsikon vaihto ja ```@if```-lauseke, jolla tässä tilanteessa vain vaikutetaan oikean rahasymbolin renderöintiin ```@WhichCurrency```-muuttujan mukaan.
+Komponentin muutokset ovat seuraavat: Code-lohkoon on lisätty 2 uutta **julkista** komponenttia, ```WhichCurrency``` ja ```ComponentTitle``` ( _Huomioi myös muutokset alkuperäisiin muuttujiin ja funktioon_ ). Näille on annettu ```Component parameter```-määrittely ```[Parameter]``` ominaisuudella. Nyt näiden kahden muuttujan arvoihin pääsee käsiksi komponentin ulkopuolelta, mikä auttaa huomattavasti komponentin interaktiivisuuteen. Html koodiin on myös sisällytetty ```ComponentTitle```-muuttujalla bindattu otsikko ja [kolmiarvoinen ehtolauseke](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/conditional-operator#conditional-ref-expression), jolla tässä tilanteessa vain vaikutetaan oikean rahasymbolin renderöintiin ```@WhichCurrency```-muuttujan mukaan. Kyseinen lauseke pitää sisällyttää [Explicit Razor](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/conditional-operator#conditional-ref-expression)-lausekkeen sisään, jotta html-koodissa voidaan renderöidä välejä vaativia C#-toimintojen tuloksia.
 
 ``` c#
 <!-- Index.razor -->
