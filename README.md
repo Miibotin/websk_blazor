@@ -73,7 +73,18 @@ Razor-komponenttien tiedostotyyppi on .razor, mikä käyttää ASP<span>.NET:n o
 
 ## Rakenne
 
-EI VIELÄ TEHTY
+Täysin uudesta Blazor-projektista löytyy tiedostoja ja hakemistoja, joista on hyvä tietää seuraavanlaista:
+
+- **Program.cs** - Sisältää sovelluksen aloituspisteen. Oletuksena kaikilla ASP<span>.NET:n sovelluksilla.
+- **Startup.cs** - Kaikki sovelluksen käynnistykseen liittyvä logiikka sisällytetään tänne. Luokka sisältää 2 eri metodia:
+    - ```ConfigureServices```-metodi konfiguroi sovelluksen mahdolliset [Dependency Injection](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-3.1)-servicet, tapa luoda kevyitä, uudelleen toistettavia ratkaisuja sovellukseen.
+    - ```Configure```-metodi luo sovellukselle pipeline-prosessin. Oletuksena ```Configure``` lisää komponenttien juuren, App-komponentin DOMiin ```<app>```-elementiksi **(Vain WebAssembly-mallissa)**.
+- **wwwroot** - sisältää sovelluksen staattisen sisällön, kuten kuvat, skriptit ja tyylittelyt. Omia skripti- ja tyylitiedostoja voi laittaa tänne.
+- **wwwroot/index.html** **(Blazor WebAssembly)** - Sovelluksen juuritiedosto, mihin sovelluksen logiikka renderöidään. Sisältää perus Html-rungon lisäksi aiemmin mainitun App-komponentin. blazor.webassembly.js-tiedosto implementoidaan mukaan, mikä hoitaa .NET-ajoympäristön, sovelluksen ja sovelluksen riippuvuuksien latauksen käyttäjälle, sekä suorittaa sovelluksen ajoa selaimessa.
+- **Pages/_Host.cshtml** **(Blazor Server)** - Sovelluksen juuritiedosto, mikä renderöinnin jälkeen lähetetään käyttäjälle. Sisältää Razor-syntaksia ja hoitaa App-komponentin renderöinnin. blazor.server.js-tiedosto implementoidaan mukaan, mikä asettaa yhteyden palvelimen ja selaimen välille SignalR:n avulla.
+- **App.razor** - Sovelluksen pääkomponentti, joka hoitaa käyttäjäpuolen reititystä.
+- **Pages** - Hakemisto komponenteille mitkä on määritetty sivuiksi ```@page```-direktiivillä, joita voidaan hakea reitityksellä.
+- **_Imports.razor** - Sisällyttää kaikki yleiset Razor-komponentin tarvittavat ominaisuudet ja luokat. Käyttäjä voi sisällyttää omia hakemistoja ja niiden komponentteja tai tiedostoja ```@using {projektin_nimi}.{hakemiston_nimi}```-esimerkillä.
 
 ## Esimerkki
 
@@ -192,7 +203,8 @@ Ensimmäinen muutos tapahtuu CurrencyConverter-komponentissa, mihin käydään t
     private double Value { get; set; }
     private double ChangedValue { get; set; }
 
-    private void Convert() {
+    private void Convert() 
+    {
         if(WhichCurrency == "euros") 
         {
             ChangedValue = Value * 1.44;
@@ -225,7 +237,8 @@ Komponentin muutokset ovat seuraavat: Code-lohkoon on lisätty 2 uutta **julkist
     private string Value = "euros";
     private string Title = "Eurot dollareiksi!";
 
-    private void Change(int x) {
+    private void Change(int x) 
+    {
         if(x == 0) 
         {
             Value = "euros";
@@ -247,7 +260,8 @@ Ylemmässä esimerkissä opit Razor-syntaksin perusteita, one-way, two-way data-
 
 # Blazorin mallit
 
-Blazorista on kirjoitushetkellä saatavilla 2 versiota, joiden toiminnallisuus eroaa vain tavasta tuoda sovellus loppukäyttäjälle.
+Blazorista on kirjoitushetkellä saatavilla 2 versiota, joiden toiminnallisuus eroaa vain tavasta tuoda sovellus käyttäjälle.
+
 ## Blazor Server
 
 Blazorin ensimmäinen versio, Blazor Server, toimii suht perinteisellä tavalla. Applikaatio sekä pyörii että ajaa toimintoja ASP.NET-palvelimelta käsin, jolloin kaikki muutokset tapahtuvat loppukäyttäjän selaimen ulkopuolella ja selaimelle tuodaan vain päivitetty DOM. Eli jos käyttäjä painaa painiketta mikä vaihtaa ruudulla näkyvän luvun arvoa yhdellä, tehdään pyyntö palvelimelle missä Blazor tekee tarvittavat muutokset komponenttiin/komponentteihin ja palauttaa nämä takaisin käyttäjän selaimelle. Kaikki nämä muutokset tuodaan ja viedään SignalR-komponentin välityksellä. Blazor Server julkaistiin ASP<span>.NET Core 3.0 version mukana.
