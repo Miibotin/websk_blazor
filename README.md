@@ -63,9 +63,17 @@ _Yllä olevassa kuvassa [w3schools-sivulta](https://www.w3schools.com/asp/showfi
 
 Blazor toimii samalla tavalla kuten moni Front-end sovelluskehys, millä pystyy luomaan SPA-sovelluksia. Blazorin rakenne perustuu Razor-komponentteihin, millä voidaan hajauttaa sovelluksen kokonaisuuksia pienempiin osioihin. Tämä helpottaa koodin lukua, sekä myös mahdollistaa saman ominaisuuden käytön muualla sovelluksessa ilman uudelleenkirjoittamista.
 
-Razor-komponenttien tiedostotyyppi on .razor, mikä käyttää ASP<span>.NET:n omaa [Razor-syntaksia](https://docs.microsoft.com/fi-fi/aspnet/core/mvc/views/razor?view=aspnetcore-3.1). Razor syntaksi yhdistää Html- ja C#-kielet samaan tiedostoon, jotta komponentin logiikka ja ulkoasu pystytään tuottamaan samassa tiedostossa. ```@```-symboli erottaa C#-koodin html-kielestä.
+Razor-komponenttien tiedostotyyppi on .razor, mikä käyttää ASP<span>.NET:n omaa [Razor-syntaksia](https://docs.microsoft.com/fi-fi/aspnet/core/mvc/views/razor?view=aspnetcore-3.1). Razor syntaksi yhdistää Html- ja C#-kielet samaan tiedostoon, jotta komponentin logiikka ja ulkoasu pystytään tuottamaan samassa tiedostossa. ```@```-symboli erottaa C#-koodin html-koodista ja sillä voidaan sisällyttää C#-koodia html:n sisälle.
+
+[**Blazorin dokumentaatio**](https://docs.microsoft.com/en-us/aspnet/core/blazor/?view=aspnetcore-3.1)
+
+[**Blazorin Github-repositorio**](https://github.com/aspnet/Blazor)
+
+[**Kattava ja ajankohtainen luento Blazorista**](https://www.youtube.com/watch?v=6BT2AF9PO5g)
 
 ## Rakenne
+
+EI VIELÄ TEHTY
 
 ## Esimerkki
 
@@ -73,7 +81,7 @@ Esimerkkiä varten luodaan uusi Blazor-projekti ```dotnet new blazorwasm -o {pro
 
 ![](./Kuvat/blazor_newproject.png)
 
-Jatketaan esimerkkiä lisäämällä siihen logiikkaa. Luodaan simppeli valuutanvaihto-komponentti sovellukselle. Sovellus käyttää valmiiksi asennettua Bootstrap tyylikehystä. (_Tosin hyvin pieniä muutoksia tuli tehtyä sovelluksen globaaliin style.css-tiedostoon._) 
+Jatketaan esimerkkiä lisäämällä siihen logiikkaa. Luodaan simppeli valuutanvaihto-komponentti sovellukselle. Sovellus käyttää valmiiksi asennettua Bootstrap tyylikehystä. ( _Tosin hyvin pieniä muutoksia tuli tehtyä sovelluksen globaaliin wwwroot/style.css-tiedostoon._ ) 
 
 ``` c#
 <!-- CurrencyConverter.razor -komponentti -->
@@ -84,31 +92,32 @@ Jatketaan esimerkkiä lisäämällä siihen logiikkaa. Luodaan simppeli valuutan
     <div class="input-group-prepend">
         <span class="input-group-text" id="basic-addon1">€</span>
     </div>
-    <input type="text" class="form-control" @bind="euros">
+    <input type="text" class="form-control" @bind=Euros>
 </div>
 
-<button type="button" @onclick="Convert" class="btn btn-dark">Muuta!</button>
+<button type="button" @onclick=Convert class="btn btn-dark">Muuta!</button>
 
 <div class="input-group mb-3">
     <div class="input-group-prepend">
         <span class="input-group-text" id="basic-addon1">$</span>
     </div>
-    <input type="text" disabled class="form-control" @bind="dollars">
+    <input type="text" disabled class="form-control" @bind=Dollars>
 </div>
 
 @code {
 
-    private double euros { get; set; }
-    private double dollars { get; set; }
+    private double Euros { get; set; }
+    private double Dollars { get; set; }
 
-    private void Convert() {
-        dollars = euros * 1.44;
+    private void Convert() 
+    {
+        Dollars = Euros * 1.44;
     }
 }
 ```
-Yllä luodussa CurrencyConverter-komponentissa logiikka toimii seuraavasti: Käyttäjä kirjoittaa muutettavan arvon ylempään ```<input>``` elementtiin, joka bindaa arvon ```@bind``` parametrin sisältävään muuttujaan. Tämän jälkeen kun käyttäjä painaa ```<button>``` painiketta, elementin sisältämä ```@onclick``` funktio aktivoidaan, mikä kutsuu ```@code``` lohkossa löytyvää metodia. Dollariksi käännetty rahasumma annetaan toiselle muuttujalle, mikä on vuorostaan bindattu alempaan ```<input>``` elementtiin.
+Yllä luodussa CurrencyConverter-komponentissa logiikka toimii seuraavasti: Käyttäjä kirjoittaa muutettavan arvon ylempään ```<input>``` elementtiin, joka sisällyttää arvon ```@bind```-parametrin sisältävään muuttujaan ( _```@bind``` on Razor-komponentin [two-way data binding-ominaisuus](https://learn-blazor.com/pages/data-binding/)_ ). Tämän jälkeen kun käyttäjä painaa ```<button>``` painiketta, elementin sisältämä ```@onclick``` eventtiin bindattu ```Convert``` metodi kutsutaan. Dollariksi käännetty rahasumma annetaan toiselle muuttujalle, mikä on vuorostaan bindattu alempaan ```<input>``` elementtiin.
 
-![](./Kuvat/blazor_laskuri.png)
+![](./Kuvat/blazor_convert.gif)
 
 Komponentin lopputulos näyttää yllä olevan kuvan mukaiselta. Koodia pystyisi nyt käyttämään, kuhan siihen päästään käsiksi sovelluksen kautta. Kaksi vaihtoehtoa löytyy: joko komponentille asetetaan polku ```@page``` direktiivillä, tai sisällyttämällä se komponenttiin mistä löytyy jo kyseinen direktiivi.
 
@@ -126,26 +135,119 @@ Komponentin lopputulos näyttää yllä olevan kuvan mukaiselta. Koodia pystyisi
 </main>
 ```
 
-```<CurrencyConverter />``` elementti sisältää ylhäällä luodun valuutanvaihto-komponentin. (_Elementin nimi pitää täsmätä tarkkaan komponentin tiedostonimen kanssa. Koska komponenttini sijaitsee Components-kansiossa, se täytyy ottaa käyttöön __Imports.razor-tiedostossa._) Tämän jälkeen sovellusta voidaan nähdä jälleen ```dotnet run```-komennolla.
+```<CurrencyConverter />``` elementti sisältää ylhäällä luodun valuutanvaihto-komponentin. Elementin nimi pitää täsmätä tarkkaan komponentin tiedostonimen kanssa ja tiedoston polku pitää löytyä _Imports-tiedostosta. Tämän jälkeen sovellusta voidaan nähdä jälleen ```dotnet run```-komennolla.
 
-_Vinkki: komennolla ```dotnet watch run``` sovellus päivittyy automaattisesti ja muutoksia varten tarvitsee vain päivittää sivu. Ei tarvitse sietää ```run```-komennon sulku ja käynnistys rumbaa._
+_Vinkki: komennolla ```dotnet watch run``` sovellus päivittyy automaattisesti ja muutoksia varten tarvitsee vain päivittää sivu. Näin vältetään jatkuvaa ```run```-komennon sulkemista ja ajamista._
 
 ![](./Kuvat/blazor_updated.png)
 
-_Tähän vielä komponentin parametreista!_
+Komponentteihin voidaan myös sisällyttää parametreja, joiden avulla voidaan vaikuttaa komponentin logiikkaan isäntäkomponentista käsin. Jatketaan esimerkkiä siten, että lisätään mahdollisuus vaihtaa dollarit takaisin euroiksi alhaalla olevan gifin tavoin.
 
-Lisää Blazorin ominaisuuksista (layouts, services, routing jne.) Myöhemmässä kappaleessa.
+![](./Kuvat/blazor_choice.gif)
 
-Blazorista on kirjoitushetkellä saatavilla 2 versiota, joiden toiminnallisuus eroaa vain tavasta tuoda sovellus loppukäyttäjälle.
+Ensimmäinen muutos tapahtuu CurrencyConverter-komponentissa, mihin käydään tekemään muutamia muutoksia.
 
-[**Blazorin dokumentaatio**](https://docs.microsoft.com/en-us/aspnet/core/blazor/?view=aspnetcore-3.1)
+``` c#
+<!-- CurrencyConverter.razor -->
+<h3>@ComponentTitle</h3>
 
-[**Blazorin Github-repositorio**](https://github.com/aspnet/Blazor)
+<div class="input-group">
+    <div class="input-group-prepend">
+    @if(WhichCurrency == "euros")
+    { 
+        <span class="input-group-text" id="basic-addon1">€</span>
+    }
+    else
+    {
+        <span class="input-group-text" id="basic-addon1">$</span>   
+    }
+    </div>
+    <input type="text" class="form-control" @bind=Value>
+</div>
 
-[**Kattava ja ajankohtainen luento Blazorista**](https://www.youtube.com/watch?v=6BT2AF9PO5g)
+<button type="button" @onclick=Convert class="btn btn-dark">Muuta!</button>
+
+<div class="input-group">
+    <div class="input-group-prepend">
+    @if(WhichCurrency == "euros")
+    {       
+        <span class="input-group-text" id="basic-addon1">$</span>
+    }
+    else
+    {
+        <span class="input-group-text" id="basic-addon1">€</span>       
+    }
+    </div>
+    <input type="text" disabled class="form-control" @bind=ChangedValue>
+</div>
+
+@code {
+
+    [Parameter]
+    public string WhichCurrency { get; set; }
+
+    [Parameter]
+    public string ComponentTitle { get; set; }
+    
+    private double Value { get; set; }
+    private double ChangedValue { get; set; }
+
+    private void Convert() {
+        if(WhichCurrency == "euros") 
+        {
+            ChangedValue = Value * 1.44;
+        } else 
+        {
+            ChangedValue = Value * 0.71;
+        }
+    }
+}
+```
+
+Komponentin muutokset ovat seuraavat: Code-lohkoon on lisätty 2 uutta **julkista** komponenttia, ```WhichCurrency``` ja ```ComponentTitle``` ( _Huomioi myös muutokset alkuperäisiin muuttujiin ja funktioon_ ). Näille on annettu ```Component parameter```-määrittely ```[Parameter]``` ominaisuudella. Nyt näiden kahden muuttujan arvoihin pääsee käsiksi komponentin ulkopuolelta, mikä auttaa huomattavasti komponentin interaktiivisuuteen. Html osion sisälle on myös sisällytetty ```ComponentTitle```-muuttujan mukaan otsikon vaihto ja ```@if```-lauseke, jolla tässä tilanteessa vain vaikutetaan oikean rahasymbolin renderöintiin ```@WhichCurrency```-muuttujan mukaan.
+
+``` c#
+<!-- Index.razor -->
+@page "/"
+
+<main>
+    <h1>Blazor perusteet!</h1>
+
+    <p>
+        <button type="button" @onclick=@(() => Change(0)) class="btn btn-dark">Eurot</button>
+        <button type="button" @onclick=@(() => Change(1)) class="btn btn-info">Dollarit</button>
+    </p>
+
+    <CurrencyConverter WhichCurrency=@Value ComponentTitle=@Title />
+</main>
+
+@code {
+    private string Value = "euros";
+    private string Title = "Eurot dollareiksi!";
+
+    private void Change(int x) {
+        if(x == 0) 
+        {
+            Value = "euros";
+            Title = "Eurot dollareiksi!";
+        } else 
+        {
+            Value = "dollars";
+            Title = "Dollarit euroiksi!";
+        }
+    }
+}
+```
+
+Index-komponenttiin tehdyt muutokset: ```<CurrencyConverter />```-elementille on annettu nyt komponentin parametreihin arvot Index-komponentin omista muuttujista. Muuttujat saavat arvonsa painikkeiden ```@onclick```-eventtien sisällyttämien ```Change``` metodin tuloksesta. Jos eventtiin bindattuun metodiin tarvitaan parametreja, bindaukseen tarvitaan .NET:n [Lambda-lauseketta](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). Näiden muutosten jälkeen valutaanvaihto molempiin suuntiin pitäisi toimia, kuten esimerkissä.
+
+Ylemmässä esimerkissä opit Razor-syntaksin perusteita, one-way, two-way data- ja event binding-ominaisuuksista, komponenttien sisällyttämisestä isäntäkomponentteihin, C#-koodin renderöinnistä Html-koodin sisälle ```@```-symbolia hyödyntäen ja ehkä myös itse C#-koodia. Myöhemmin tulet oppimaan lisää Blazorin ominaisuuksia, kuten komponenttien hyödyntämistä ulkoasun rakentamisessa, lomakkeiden luontia ja polkuja.
+
+[**Blazorin komponentit**](https://docs.microsoft.com/fi-fi/aspnet/core/blazor/components?view=aspnetcore-3.1)
 
 # Blazorin mallit
 
+Blazorista on kirjoitushetkellä saatavilla 2 versiota, joiden toiminnallisuus eroaa vain tavasta tuoda sovellus loppukäyttäjälle.
 ## Blazor Server
 
 Blazorin ensimmäinen versio, Blazor Server, toimii suht perinteisellä tavalla. Applikaatio sekä pyörii että ajaa toimintoja ASP.NET-palvelimelta käsin, jolloin kaikki muutokset tapahtuvat loppukäyttäjän selaimen ulkopuolella ja selaimelle tuodaan vain päivitetty DOM. Eli jos käyttäjä painaa painiketta mikä vaihtaa ruudulla näkyvän luvun arvoa yhdellä, tehdään pyyntö palvelimelle missä Blazor tekee tarvittavat muutokset komponenttiin/komponentteihin ja palauttaa nämä takaisin käyttäjän selaimelle. Kaikki nämä muutokset tuodaan ja viedään SignalR-komponentin välityksellä. Blazor Server julkaistiin ASP<span>.NET Core 3.0 version mukana.
