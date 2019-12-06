@@ -203,6 +203,8 @@ Ensimmäinen muutos tapahtuu CurrencyConverter-komponentissa, mihin käydään t
 
 Komponentin muutokset ovat seuraavat: Code-lohkoon on lisätty 2 uutta **julkista** komponenttia, ```WhichCurrency``` ja ```ComponentTitle``` ( _Huomioi myös muutokset alkuperäisiin muuttujiin ja funktioon_ ). Näille on annettu ```Component parameter```-määrittely ```[Parameter]``` ominaisuudella. Nyt näiden kahden muuttujan arvoihin pääsee käsiksi komponentin ulkopuolelta, mikä auttaa huomattavasti komponentin interaktiivisuuteen. Html koodiin on myös sisällytetty ```ComponentTitle```-muuttujalla bindattu otsikko ja [kolmiarvoinen ehtolauseke](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/conditional-operator#conditional-ref-expression), jolla tässä tilanteessa vain vaikutetaan oikean rahasymbolin renderöintiin ```@WhichCurrency```-muuttujan mukaan. Kyseinen lauseke pitää sisällyttää [Explicit Razor](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/conditional-operator#conditional-ref-expression)-lausekkeen sisään, jotta html-koodissa voidaan renderöidä välejä vaativia C#-toimintojen tuloksia.
 
+[**Implicit Razor expression**](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-3.1#implicit-razor-expressions) & [**Explicit Razor expression**](https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-3.1#implicit-razor-expressions)
+
 ``` c#
 <!-- Index.razor -->
 @page "/"
