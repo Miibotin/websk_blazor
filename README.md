@@ -300,7 +300,7 @@ WebAssembly on matalan tason binäärimuotokieli, minkä avulla korkean tason oh
 
 [**Lisätietoa WebAssemblystä**](https://blog.logrocket.com/webassembly-how-and-why-559b7f96cd71/)
 
-[**Raytracing-demo WebAssemblyn avulla**](https://mtharrison.github.io/wasm-raytracer/)
+[**WebAssembly:llä toimiva Raytracing-demo**](https://mtharrison.github.io/wasm-raytracer/)
 
 [**WebAssembly-videoeditori**](https://d2jta7o2zej4pf.cloudfront.net/)
 
