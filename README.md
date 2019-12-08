@@ -217,8 +217,11 @@ Sovellukselle voi myös luoda vaihtoehtoisia näkymiä ja antaa niitä suoraan k
 @layout SecondLayout
 ```
 
-[**Lisää layout-komponenteista**](https://docs.microsoft.com/fi-fi/aspnet/core/blazor/layouts?view=aspnetcore-3.1)
+[**Blazorin komponentit**](https://docs.microsoft.com/fi-fi/aspnet/core/blazor/components?view=aspnetcore-3.1)
 
+[**Blazorin ulkoasusta**](https://docs.microsoft.com/fi-fi/aspnet/core/blazor/layouts?view=aspnetcore-3.1)
+
+[**Blazorin reitityksestä**](https://docs.microsoft.com/fi-fi/aspnet/core/blazor/routing?view=aspnetcore-3.1)
 ## JavaScript Interop
 
 Blazor-sovellus pystyy kutsumaan JavaScript funktioita omilla metodeillaan JavaScript Interop:n avulla. Tällä voidaan vaikuttaa DOMin tai selaimen ominaisuuksiin, joihin Blazorilla ei välttämättä (vielä) pääse käsiksi. Kehittäjällä on myös tämän myötä enemmän mahdollisuuksia soveltaa kehityksessä, eikä sovellusta rajoiteta tietyn teknologian vuoksi.
@@ -463,12 +466,6 @@ Komponentin muutokset ovat seuraavat: Code-lohkoon on lisätty 2 uutta **julkist
 Index-komponenttiin tehdyt muutokset: ```<CurrencyConverter />```-elementille on annettu nyt komponentin parametreihin arvot Index-komponentin omista muuttujista. Muuttujat saavat arvonsa painikkeiden ```@onclick```-eventtien sisällyttämien ```Change``` metodin tuloksesta. Jos eventtiin bindattuun metodiin tarvitaan parametreja, bindaukseen tarvitaan .NET:n [Lambda-lauseketta](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). Näiden muutosten jälkeen valutaanvaihto molempiin suuntiin pitäisi toimia, kuten esimerkissä.
 
 Ylemmässä esimerkissä opit data- ja event binding-ominaisuuksista, komponenttien sisällyttämisestä isäntäkomponentteihin, reitityksestä, Razor-syntaksin perusteita ja ehkä myös itse C#-koodia.
-
-[**Blazorin komponentit**](https://docs.microsoft.com/fi-fi/aspnet/core/blazor/components?view=aspnetcore-3.1)
-
-[**Blazorin ulkoasun luonnista**](https://docs.microsoft.com/fi-fi/aspnet/core/blazor/layouts?view=aspnetcore-3.1)
-
-[**Blazorin reitityksestä**](https://docs.microsoft.com/fi-fi/aspnet/core/blazor/routing?view=aspnetcore-3.1)
 
 # Tehtävä
 
