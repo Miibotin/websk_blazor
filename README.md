@@ -5,9 +5,21 @@
 ### Sisällyksen pöytä
 
 ## [Yleistä](#yleistä)
-### [.NET](#NET)
-[Third Example](#third-example)
-[Fourth Example](#fourth-examplehttpwwwfourthexamplecom)
+>### [.NET](#NET)
+>### [ASP.NET](#aspnet)
+## [Mikä on Blazor?](#mikä-on-blazor)
+>### [Rakenne](#rakenne)
+>### [Komponentit](#komponentit)
+>>#### [@Page](#page)
+>>#### [@Layout](#layout)
+>### [JavaScript Interop](#javascript-interop)
+## [Blazorin mallit](#blazorin-mallit)
+>### [Blazor Server](#blazor-server)
+>>#### [SignalR](#signalr)
+>### [Blazor WebAssembly](#blazor-webassembly)
+>>#### [WebAssembly](#webassembly)
+## [Esimerkki](#esimerkki)
+## [Tehtävä](#tehtävä)
 
 
 # Mitä tarviit?
@@ -114,7 +126,7 @@ Täysin uudesta Blazor-projektista löytyy tiedostoja ja hakemistoja, joista on 
 
 Kuten aiemmin jo mainittu, komponenttien avulla sovellus voidaan hajauttaa pienimpiin osioihin, helpottaen koodin luettavuutta ja vähentämään toistuvuutta. Kehittäjän ei suotta tarvitse kirjoittaa uudelleen sovelluksen ominaisuutta, jos sen voi vaan upottaa sivulta toiselle yhdellä ```<ElementinNimi />```-tägillä.
 
-### Page
+### @Page
 
 ```@page```-direktiivillä määritetty komponentti toimii sovelluksen sivuna, minkä voi hakea sille määritetyn reitin mukaan.
 
@@ -145,7 +157,7 @@ Yhdelle komponentille voi myös määrittää useamman reitin ja reiteille voi a
 ```
 _Nyt sivu voidaan löytää esimerkiksi osoitteesta ```localhost:5000/Homepage/sivu```_
 
-### Layout
+### @Layout
 
 ``` html
 <!-- MainLayout.razor -->
