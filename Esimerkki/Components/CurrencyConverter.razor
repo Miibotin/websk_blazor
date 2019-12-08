@@ -1,0 +1,43 @@
+<h3>@ComponentTitle</h3>
+
+<div class="input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1">@(WhichCurrency == "euros" ? "€" : "$")</span>
+    </div>
+    <input type="text" class="form-control" @bind=Value>
+</div>
+
+<button type="button" @onclick=Convert class="btn btn-dark">Muuta!</button>
+
+<div class="input-group">
+    <div class="input-group-prepend">     
+        <span class="input-group-text" id="basic-addon1">@(WhichCurrency == "euros" ? "$" : "€")</span>
+    </div>
+    <input type="text" disabled class="form-control" @bind=ChangedValue>
+</div>
+
+@code {
+
+    [Parameter]
+    public string WhichCurrency { get; set; }
+
+    [Parameter]
+    public string ComponentTitle { get; set; }
+    
+    private double Value { get; set; }
+    private double ChangedValue { get; set; }
+
+    private void Convert() {
+        if(WhichCurrency == "euros") 
+        {
+            ChangedValue = Math.Round(Value * 1.44, 2);
+        } else 
+        {
+            ChangedValue = Math.Round(Value * 0.71, 2);
+        }
+    }
+}
+
+
+
+

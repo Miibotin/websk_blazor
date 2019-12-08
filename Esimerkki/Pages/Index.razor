@@ -1,0 +1,28 @@
+﻿@page "/"
+
+<h1>Blazor perusteet!</h1>
+
+<p>
+    <button type="button" @onclick=@(() => Change(0)) class="btn btn-dark">Eurot</button>
+    <button type="button" @onclick=@(() => Change(1)) class="btn btn-info">Dollarit</button>
+</p>
+
+<CurrencyConverter WhichCurrency=@Value ComponentTitle=@Title />
+
+@code {
+
+    private string Value = "euros";
+    private string Title = "Eurot dollareiksi!";
+
+    private void Change(int x) {
+        if(x == 0) 
+        {
+            Value = "euros";
+            Title = "Eurot dollareiksi!";
+        } else 
+        {
+            Value = "dollars";
+            Title = "Dollarit euroiksi!";
+        }
+    }
+}
