@@ -30,17 +30,20 @@
 ```
 dotnet new -i Microsoft.AspNetCore.Blazor.Templates::3.1.0-preview4.19579.2
 ```
-- Jos käytät Visual Studio Code-tekstieditoria, tarvitset [C#-lisärin](https://github.com/OmniSharp/omnisharp-vscode). _Kyseisen lisärin IntelliSense on oman kokemuksen mukaan hyvin buginen Blazorin kehitykseen, mutta ajaa asiansa._
-    - Helpommalla voit päästä käyttämällä virallista [Visual Studio-ohjelmankehitysympäristöä](https://visualstudio.microsoft.com/). Makuasioita että mitä käyttää.
+- Jos käytät Visual Studio Code-tekstieditoria, tarvitset [C#-lisärin](https://github.com/OmniSharp/omnisharp-vscode/blob/master/README.md). _Kyseisen lisärin IntelliSense on oman kokemuksen mukaan hyvin buginen Blazorin kehitykseen, mutta ajaa asiansa._
+    - Helpommalla voit päästä käyttämällä virallista [Visual Studio-ohjelmankehitysympäristöä](https://visualstudio.microsoft.com/). Makuasioita loppujen lopuksi.
 
 [**Get started with ASP.NET Core Blazor**](https://docs.microsoft.com/en-us/aspnet/core/blazor/get-started?view=aspnetcore-3.1&tabs=visual-studio)
 
 # Yleistä
-Blazor on Microsoftin kehittämä Front-end web-sovelluskehys, minkä avulla pystytään luomaan SPA-sovelluksia hyödyntämällä C#-ohjelmointikieltä ja .NET-ympäristöä. Tästä syystä websovelluskehityksen tukena on laaja kirjo Microsoftin kehittämiä kirjastoja, sekä valmis infrastruktuuri kehitystä varten.
+Blazor on Microsoftin kehittämä Front-end sovelluskehys, minkä avulla pystytään luomaan SPA-sovelluksia hyödyntämällä C#-ohjelmointikieltä ja .NET-ympäristön tarjoamia työkaluja. Tästä syystä websovelluskehityksen tukena on laaja kirjo Microsoftin kehittämiä kirjastoja, sekä valmis infrastruktuuri kehitystä varten.
 
 ## .NET
 
-Kuten edellisessä kappaleessa kerrottiin, .NET-ohjelmistokehys tarjoaa laajan valikoiman kirjastoja sovelluskehitykseen. Näistä kaikille tutuin kirjasto Ohjelmoinnin Perusteet-kurssilta lienee System, mikä on C#-kielen olennaisin kirjasto.
+.NET on Microsoftin kehittämä kehitysympäristö, mikä sisältää kehittäjille ison infrastruktuurin työkaluja sovelluskehitykseen. .NET:n avulla pystyy luomaan lähes minkälaisia sovelluksia, aina perinteisistä työpöytäsovelluksista mobiili- ja web-sovelluksiin. Kehitysympäristö tarjoaa myös lukuisia erilaisia työkaluja kehityksen apuun, kuten oman [komentoliittymän (CLI)](https://docs.microsoft.com/en-us/dotnet/core/tools/?tabs=netcore2x) ja [Common Language Runtime](https://docs.microsoft.com/en-us/dotnet/standard/clr)-ajoympäristön koodin kääntöön ja ajoon. .NET:llä yleisesti kehitetään Windows-alustoilla pyöriviä sovelluksia, mutta nykyään alustariippuvuudet ovat huomattavasti vähentyneet, varsinkin web-sovelluksien yleistymisen myötä. .NET tukee C#-kielen lisäksi myös F# ja Visual Basic-ohjelmointikieliä, C# näistä se yleisin vaihtoehto.
+
+Kuten edellisessä kappaleessa kerrottiin, .NET-ohjelmistokehys tarjoaa ison valikoiman kirjastoja sovelluskehitykseen. Näistä kaikille tutuin kirjasto Ohjelmoinnin Perusteet-kurssilta lienee System, mikä on C#-kielen olennaisin kirjasto.
+
 ```c#
 System.Console.Writeline("Hello World!");
 ```
@@ -48,13 +51,17 @@ _Yllä oleva esimerkki kuvastaa System-kirjastosta löytyvän Console-luokan Wri
 
 Kattavan luokkakirjaston lisäksi muita .NET:n ominaisuuksia voi lukea [**tästä linkistä!**](https://docs.microsoft.com/fi-fi/dotnet/standard/)
 
+[**.NET:n etusivu**](https://dotnet.microsoft.com/)
+
 [**.NET Core vs .NET Framework**](https://docs.microsoft.com/fi-fi/dotnet/standard/choosing-core-framework-server?toc=%2Faspnet%2Fcore%2Ftoc.json&bc=%2Faspnet%2Fcore%2Fbreadcrumb%2Ftoc.json&view=aspnetcore-3.0) - Hyödyllinen linkki kertomaan näiden kahden termin eroja ja niiden eri käyttötarkoituksista.
 
 [**.NET:n Github-repositorio**](https://github.com/dotnet)
 
+[**.NET ohjelmointikielet**](https://dotnet.microsoft.com/languages)
+
 ## ASP.NET<div>
 
-Jos C#-kielellä halutaan luoda dynaamisia web-sovelluksia, pelkkä .NET-kehys ei siihen riitä. Tätä varten Microsoft on kehittänyt ASP.NET-ohjelmistokehyksen .NET:n rinnalle. ASP<span>.NET on vapaata lähdekoodia ja sisältää omien (ja perus .NET:n) luokkakirjastojen lisäksi valmiita kehyksiä websovellusten tekoon, kuten [MVC](https://docs.microsoft.com/fi-fi/aspnet/core/mvc/overview?view=aspnetcore-3.0) ja [Web Forms](https://docs.microsoft.com/fi-fi/aspnet/web-forms/). Blazor on ASP.NET-perheen uusin lisäys, minkä ensimmäinen versio lisättiin ASP<span>.NET Core versiossa 3.0 (kirjoitushetkellä uusin virallinen julkaisu).
+Jos C#-kielellä halutaan dynaamisia web-sovelluksia, pelkkä .NET-kehys ei siihen riitä. Tätä varten Microsoft on kehittänyt ASP.NET-ohjelmistokehyksen .NET:n rinnalle. ASP<span>.NET on vapaata lähdekoodia ja sisältää omien (ja perus .NET:n) luokkakirjastojen lisäksi valmiita kehyksiä websovellusten tekoon, kuten [MVC](https://docs.microsoft.com/fi-fi/aspnet/core/mvc/overview?view=aspnetcore-3.0) ja [Web Forms](https://docs.microsoft.com/fi-fi/aspnet/web-forms/). Blazor on ASP.NET-perheen uusin lisäys, minkä ensimmäinen versio lisättiin ASP<span>.NET Core versiossa 3.0 (kirjoitushetkellä uusin virallinen julkaisu).
 
 ```c#
 @{
@@ -85,6 +92,8 @@ Jos C#-kielellä halutaan luoda dynaamisia web-sovelluksia, pelkkä .NET-kehys e
 ```
 _Yllä olevassa kuvassa [w3schools-sivulta](https://www.w3schools.com/asp/showfile_c.asp?filename=try_razor_cs_013) lainattu esimerkki ASP-sovelluksesta._
 
+[**ASP.NET:n etusivu**](https://dotnet.microsoft.com/apps/aspnet)
+
 [**ASP.NET Core:n dokumentaatio**](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-3.0)
 
 [**ASP.NET vs ASP.NET Core**](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/choose-aspnet-framework?view=aspnetcore-3.0) - Hyödyllinen linkki kertomaan näiden kahden termin eroja ja niiden eri käyttötarkoituksista.
@@ -95,12 +104,12 @@ _Yllä olevassa kuvassa [w3schools-sivulta](https://www.w3schools.com/asp/showfi
 
 Blazor toimii samalla tavalla kuten moni Front-end sovelluskehys, millä pystyy luomaan SPA-sovelluksia. Blazorin rakenne perustuu Razor-komponentteihin, millä voidaan hajauttaa sovelluksen kokonaisuuksia pienempiin osioihin. Tämä helpottaa koodin lukua, sekä myös mahdollistaa saman ominaisuuden käytön muualla sovelluksessa ilman uudelleenkirjoittamista.
 
-Razor-komponenttien tiedostotyyppi on .razor, mikä käyttää ASP<span>.NET:n omaa [Razor-syntaksia](https://docs.microsoft.com/fi-fi/aspnet/core/mvc/views/razor?view=aspnetcore-3.1). Razor syntaksi yhdistää Html- ja C#-kielet samaan tiedostoon, jotta komponentin logiikka ja ulkoasu pystytään tuottamaan samassa tiedostossa. ```@```-symbolin avulla voidaan sisällyttää C#-koodia html:n sekaan.
+Razor-komponenttien tiedostotyyppi on .razor, mikä käyttää ASP<span>.NET:n omaa [Razor-syntaksia](https://docs.microsoft.com/fi-fi/aspnet/core/mvc/views/razor?view=aspnetcore-3.1). Razor syntaksi yhdistää HTML- ja C#-kielet samaan tiedostoon, jotta komponentin logiikka ja ulkoasu pystytään tuottamaan samassa tiedostossa. ```@```-symbolin avulla voidaan sisällyttää C#-koodia HTML:n sekaan.
 
 ``` html
-<div class="warning" style="display:@_displaymessage">@Message</div>
+<div class="warning" style="display:@displaymessage">@Message</div>
 ```
-_Ylhäällä olevassa esimerkissä kaksi html-koodin sisään upotetusta C#-muuttujasta. Muuttujia voi jopa käyttää elementin tyylin määrittelyssä, kuten tässä esimerkissä vaikuttamaan kyseisen elementin renderöintiin._
+_Ylhäällä olevassa esimerkissä kaksi HTML-kielen sisään upotetusta C#-muuttujasta. Muuttujia voi jopa käyttää elementin tyylin määrittelyssä, kuten tässä esimerkissä vaikuttamaan kyseisen elementin renderöintiin._
 
 ASP<span>.NET:n vuoksi Blazorin kehitykseen on ns. pellin alla valmiina kattava infrastruktuuri, joten kehittäjä voi keskittyä vaan luomaan kattavia web-sovelluksia. Blazorin keskeisimpiä ominaisuuksia ovat:
 
@@ -126,9 +135,9 @@ Täysin uudesta Blazor-projektista löytyy tiedostoja ja hakemistoja, joista on 
 - **Startup.cs** - Kaikki sovelluksen käynnistykseen liittyvä logiikka sisällytetään tänne. Luokka sisältää 2 eri metodia:
     - ```ConfigureServices```-metodi konfiguroi sovelluksen mahdolliset [Dependency Injection](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-3.1)-servicet, tapa luoda kevyitä, uudelleen toistettavia ratkaisuja sovellukseen.
     - ```Configure```-metodi luo sovellukselle pipeline-prosessin. Oletuksena ```Configure``` lisää komponenttien juuren, App-komponentin DOMiin ```<app>```-elementiksi **(Vain WebAssembly-mallissa)**.
-- **wwwroot** - sisältää sovelluksen staattisen sisällön, kuten kuvat, skriptit ja tyylittelyt. Omia skripti- ja tyylitiedostoja voi laittaa tänne.
-- **wwwroot/index.html** **(Blazor WebAssembly)** - Sovelluksen juuritiedosto, mihin sovelluksen logiikka renderöidään. Sisältää perus Html-rungon lisäksi aiemmin mainitun App-komponentin. blazor.webassembly.js-tiedosto implementoidaan mukaan, mikä hoitaa .NET-ajoympäristön, sovelluksen ja sovelluksen riippuvuuksien latauksen käyttäjälle, sekä suorittaa sovelluksen ajoa selaimessa.
-- **Pages/_Host.cshtml** **(Blazor Server)** - Sovelluksen juuritiedosto, mikä renderöinnin jälkeen lähetetään käyttäjälle. Sisältää Razor-syntaksia ja hoitaa App-komponentin renderöinnin. blazor.server.js-tiedosto implementoidaan mukaan, mikä asettaa yhteyden palvelimen ja selaimen välille SignalR:n avulla.
+- **wwwroot**  - sisältää sovelluksen staattisen sisällön, kuten kuvat, skriptit ja tyylittelyt. Omia skripti- ja tyylitiedostoja voi laittaa tänne.
+- **wwwroot/index.html** **(Blazor WebAssembly)** - Sovelluksen juuritiedosto, mihin sovelluksen logiikka renderöidään. Sisältää perus HTML-rungon lisäksi aiemmin mainitun App-komponentin. blazor.webassembly.js-tiedosto implementoidaan mukaan, mikä hoitaa .NET-ajoympäristön, sovelluksen ja sovelluksen riippuvuuksien latauksen käyttäjälle, sekä suorittaa sovelluksen ajoa selaimessa.
+- **Pages/_Host.cshtml** **(Blazor Server)** - Sovelluksen juuritiedosto, mikä renderöinnin jälkeen lähetetään käyttäjälle. Sisältää Razor-syntaksia ja hoitaa App-komponentin renderöinnin. blazor.server.js-tiedosto implementoidaan mukaan, mikä asettaa yhteyden palvelimen ja selaimen välille [SignalR:n](#signalr-1) avulla.
 - **App.razor** - Sovelluksen pääkomponentti, joka hoitaa [reitityksen](https://docs.microsoft.com/fi-fi/aspnet/core/blazor/routing?view=aspnetcore-3.1) ja [ulkoasun](https://docs.microsoft.com/fi-fi/aspnet/core/blazor/layouts?view=aspnetcore-3.1) määrittelyn.
 - **Pages** - Hakemisto komponenteille mitkä on määritetty sivuiksi ```@page```-direktiivillä, joita voidaan hakea reitityksellä.
 - **_Imports.razor** - Sisällyttää kaikki yleiset sovelluksen tarvittavat kirjastot ja luokat. Käyttäjä voi sisällyttää omia hakemistoja ja niiden komponentteja tai tiedostoja ```@using {projektin_nimi}.{hakemiston_nimi}```-esimerkillä.
@@ -228,9 +237,9 @@ Yllä oleva skripti sijaitsee ```scripts.js```-tiedostossa, mikä pitää sijoit
 <!-- Index.razor -->
 @inject IJSRuntime _JSRuntime;
 ```
-__Imports.razor-tiedostosta löytyy automaattisesti Microsofting Interop-kirjasto, joten erikseen ei tarvitse asentaa uusia kirjastoja ominaisuuden käyttöönottoa varten._
+__Imports.razor-tiedostosta löytyy automaattisesti Microsoftin Interop-kirjasto, joten erikseen ei tarvitse asentaa uusia kirjastoja ominaisuuden käyttöönottoa varten._
 
-Seuraavaksi tarvitaan vaan kirjoittaa komponenttiin pyyntö oikeaan funktioon käyttämällä juuri [dependency injection](https://docs.microsoft.com/fi-fi/aspnet/core/blazor/dependency-injection?view=aspnetcore-3.1)-ominaisuutta avulla tuotua rajapintaamme.
+Seuraavaksi tarvitaan vaan kirjoittaa komponenttiin pyyntö oikeaan funktioon käyttämällä [dependency injection](https://docs.microsoft.com/fi-fi/aspnet/core/blazor/dependency-injection?view=aspnetcore-3.1)-ominaisuuden avulla tuotua rajapintaa.
 
 ``` c#
 // Index.razor @code-lohko
@@ -258,7 +267,7 @@ Blazorin ensimmäinen versio, Blazor Server, toimii suht perinteisellä tavalla.
 
 _Yllä olevassa kuvassa kuvattu Blazor Serverin toiminnallisuutta. Kuva on lainattu Microsoftin [Blazor-dokumentaatiosta](https://docs.microsoft.com/en-us/aspnet/core/blazor/?view=aspnetcore-3.1)._
 
-Loppukäyttäjän selaimen tuen ja suorituskyvyn riippumattomuus tekee Blazor Serveristä vahvan valinnan isojenkin sovelluksien luontiin, sillä selaimelle ei tarvitse ladata kuin Blazorin luoma dynaaminen websovellus. Tällöin olisi myös käytössä täysi tuki .NET:n työkaluihin, eikä sovelluksen komponentteja/koodia tuoda käyttäjälle. Internet yhteyden välinen viive voi toisaalta koitua hankalaksi, sillä käyttäjä ei välttämättä heti koe tapahtuvaa muutosta ja se voi pilata käyttäjäkokemuksen. Hyvään verkkoinfrastruktuuriin on siis kannattavaa investoida.
+Loppukäyttäjän selaimen tuen ja suorituskyvyn riippumattomuus tekee Blazor Serveristä vahvan valinnan isojenkin sovelluksien luontiin, sillä selaimelle ei tarvitse ladata kuin Blazorin luoma dynaaminen websovellus. Tällöin olisi myös käytössä täysi tuki .NET:n työkaluihin, eikä sovelluksen komponentteja/koodia tuoda käyttäjälle. Internet yhteyden välinen viive voi toisaalta koitua hankalaksi, sillä käyttäjä ei välttämättä heti koe tapahtuvaa muutosta ja se voi pilata käyttäjäkokemuksen.
 
 [**Blazor Server**](https://docs.microsoft.com/en-us/aspnet/core/blazor/hosting-models?view=aspnetcore-3.1#blazor-server)
 
@@ -270,7 +279,7 @@ Microsoftin kehittämän SignalR komponentin avulla Blazor Server pystyy kommuni
 
 ## Blazor WebAssembly
 
-Blazor Wasm, eli Blazor WebAssembly, on uudempi hostausmalli, mikä käyttää nimensä mukaisesti [WebAssembly-teknologiaa](https://webassembly.org/) pyörittämään .NET-applikaatioita suoraan selaimessa. Palvelimelta käyttäjän selaimelle ladataan C# ja Razor tiedostoista koostuvat .NET assembly-tiedostot, sekä .NET-ajoympäristö, minkä avulla Blazor Wasm pystyy konfiguroimaan assembly-tiedostoista staattiset tiedostot sovelluksen ajoa varten. Tämän toimenpiteen jälkeen Blazor applikaatio toimii ilman erillisen .NET-palvelimen riippuvuutta. Blazor Wasm:n on tarkoitus julkaista ASP<span>.NET Core 3.1 version mukana, minkä arvioidaan kirjoitushetkellä julkaistavan toukokuussa 2020.
+Blazor Wasm, eli Blazor WebAssembly, on uudempi hostausmalli, mikä käyttää nimensä mukaisesti [WebAssembly-teknologiaa](https://webassembly.org/) pyörittämään .NET-applikaatioita suoraan selaimessa. Palvelimelta käyttäjän selaimelle ladataan C#- ja Razor-tiedostoista koostuvat .NET assembly-tiedostot, sekä .NET-ajoympäristö, minkä avulla Blazor Wasm pystyy konfiguroimaan assembly-tiedostoista staattiset tiedostot sovelluksen ajoa varten. Tämän toimenpiteen jälkeen Blazor-sovellus toimii ilman erillisen .NET-palvelimen riippuvuutta. Blazor Wasm:n on tarkoitus julkaista ASP<span>.NET Core 3.1 version mukana, minkä arvioidaan kirjoitushetkellä julkaistavan toukokuussa 2020.
 
 ![Kuva](https://docs.microsoft.com/en-us/aspnet/core/blazor/index/_static/blazor-webassembly.png?view=aspnetcore-3.0, "Tämä on kuva")
 
@@ -282,11 +291,15 @@ Vaikka Blazor WebAssembly on vielä kehitysvaiheessa oleva vaihtoehto Blazor-app
 
 ### WebAssembly
 
-WebAssembly on matalan tason ohjelmointikieli, minkä avulla selainympäristössä voi ajaa korkean tason ohjelmointikieliä, kuten C ja C++, kääntämällä lähdekoodi muotoon mitä selain kykenee lukemaan. Käännetty sovellus ajetaan tämän jälkeen selaimen JavaScript-moottorin(?) päällä. Wasmin avulla pystytään luomaan optimoituja websovelluksia kielillä, joiden alkup. tarkoitus on selainten ulkopuolella ja mihin JavaScriptin suorituskyky ei riitä. WebAssembly myös toimii JavaScriptin kanssa yhteistyössä. .NET hyödyntää tämän teknologian tarjoamia mahdollisuuksia kääntämään ja ajamaan Blazor Wasmin tiedostot natiivisti selainympäristössä ilman ylimääräisten lisäosien asentamista. WebAssembly on vapaata lähdekoodia ja [toimii kaikissa moderneissa selaimissa.](https://caniuse.com/#feat=wasm)
+WebAssembly on matalan tason binäärimuotokieli, minkä avulla korkean tason ohjelmointikielillä, kuten C ja C++, luotuja sovelluksia voidaan pyörittää selainympäristössä. Wasmin avulla pystytään luomaan optimoituja websovelluksia kielillä tai teknologioilla, joiden alkup. tarkoitus on selainten ulkopuolella ja mihin JavaScript ei kykene suorituskyvyn tai muiden rajoitusten vuoksi. WebAssembly myös toimii JavaScriptin kanssa yhteistyössä. .NET hyödyntää tämän teknologian tarjoamia mahdollisuuksia kääntämään ja ajamaan Blazor Wasmin tiedostot natiivisti selainympäristössä ilman ylimääräisten lisäosien asentamista. WebAssembly on vapaata lähdekoodia ja [toimii kaikissa moderneissa selaimissa.](https://caniuse.com/#feat=wasm)
 
 [**WebAssemblyn kotisivu**](https://webassembly.org/)
 
 [**Lisätietoa WebAssemblystä**](https://blog.logrocket.com/webassembly-how-and-why-559b7f96cd71/)
+
+[**Raytracing-demo WebAssemblyn avulla**](https://mtharrison.github.io/wasm-raytracer/)
+
+[**WebAssembly-videoeditori**](https://d2jta7o2zej4pf.cloudfront.net/)
 
 [**WebAssembly Editor**](https://mbebenita.github.io/WasmExplorer/) ja [**WebAssembly Studio(BETA)**](https://webassembly.studio/) - C ja C++ -kielten editorit selaimessa.
 
@@ -300,7 +313,7 @@ Esimerkkiä varten luodaan uusi Blazor-projekti komennolla ```dotnet new blazorw
 
 ![](./Kuvat/blazor_newproject.png)
 
-Jatketaan esimerkkiä lisäämällä siihen logiikkaa. Luodaan simppeli valuutanvaihto-komponentti sovellukselle. Sovellus käyttää valmiiksi asennettua Bootstrap tyylikehystä.
+Jatketaan esimerkkiä lisäämällä siihen logiikkaa. Luodaan simppeli valuutanvaihto-komponentti sovellukselle. Sovellus käyttää valmiiksi asennettua Bootstrap-tyylikehystä.
 
 ``` c#
 <!-- CurrencyConverter.razor -komponentti -->
@@ -460,6 +473,8 @@ Ylemmässä esimerkissä opit data- ja event binding-ominaisuuksista, komponentt
 # Tehtävä
 
 Luo esimerkin neuvoja käyttäen simppeli Todo-sovellus. Voit luoda uuden Blazor-sovelluksen tai käyttää valmista pohjaa Esimerkki-kansiosta. Sovelluksen logiikka täytyy olla omalla sivullaan, tai sitten etusivulla komponentista tuotuna. Varmista että sinulla on kaikki [mitä tarviit](#mitä-tarviit) Blazor-sovelluksen tekoa varten. Sovellusta varten sun täytyy luoda olio-luokka ja siitä taulukko. Valmista pohjaa voi käyttää esimerkkinä ja työ voi näyttää esimerkiksi [tältä](https://miibotin.github.io/blazor_page/). Kun työ on valmis, zippaa ja palauta.
+
+Mikäli C# ei ole entuudestaan tuttu, voit saada hyödyllisiä vinkkejä [täältä](https://docs.microsoft.com/en-us/dotnet/csharp/tutorials/intro-to-csharp/).
 
 **EXTRA**
 
