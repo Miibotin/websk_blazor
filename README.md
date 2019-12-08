@@ -469,7 +469,7 @@ Ylemmässä esimerkissä opit data- ja event binding-ominaisuuksista, komponentt
 
 # Tehtävä
 
-Luo esimerkin neuvoja käyttäen yksinkertainen Todo-sovellus. Voit luoda uuden Blazor-sovelluksen tai käyttää valmista pohjaa Esimerkki-kansiosta. Sovelluksen logiikka täytyy olla omalla sivullaan, tai sitten etusivulla komponentista tuotuna. Varmista että sinulla on kaikki [mitä tarvitset](#mitä-tarvitset) Blazor-sovelluksen tekoa varten. Sovellusta varten sinun täytyy luoda olioluokka ja siitä taulukko. Valmista pohjaa voi käyttää esimerkkinä ja työ voi näyttää esimerkiksi [tältä](https://miibotin.github.io/blazor_page/). Kun työ on valmis, zippaa ja palauta.
+Luo esimerkin neuvoja käyttäen yksinkertainen Todo-sovellus. Voit luoda uuden Blazor-sovelluksen tai käyttää valmista pohjaa [Esimerkki](https://github.com/Miibotin/websk_blazor/tree/master/Esimerkki)-kansiosta. Sovelluksen logiikka täytyy olla omalla sivullaan, tai sitten etusivulla komponentista tuotuna. Varmista että sinulla on kaikki [mitä tarvitset](#mitä-tarvitset) Blazor-sovelluksen tekoa varten. Sovellusta varten sinun täytyy luoda olioluokka ja siitä taulukko. Valmista pohjaa voi käyttää esimerkkinä ja työ voi näyttää esimerkiksi [tältä](https://miibotin.github.io/blazor_page/). Kun työ on valmis, zippaa ja palauta.
 
 Mikäli C# ei ole entuudestaan tuttu, voit saada hyödyllisiä vinkkejä [täältä](https://docs.microsoft.com/en-us/dotnet/csharp/tutorials/intro-to-csharp/).
 
