@@ -2,7 +2,7 @@
 
 <img src="https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2019/04/BrandBlazor_nohalo_1000x.png" alt="blazor" width="225" heigth="225">
 
-### Sisällysluettelo
+# Sisällysluettelo
 
 ## [Yleistä](#yleistä-1)
 >### [.NET](#NET-1)
@@ -23,6 +23,17 @@
 
 
 # Mitä tarviit?
+
+- [**.NET Core SDK 3.1**](https://dotnet.microsoft.com/download/dotnet-core/3.1) - Löytyy ohjeet kaikille alustoille
+    - Varmista .NET:n toimivuus kirjoittamalla terminaaliin ```dotnet --info```
+- Blazor WebAssembly-mallia varten lataa .NET:n Cli:tä hyödyntämällä uusin preview-templaatti
+```
+dotnet new -i Microsoft.AspNetCore.Blazor.Templates::3.1.0-preview4.19579.2
+```
+- Jos käytät Visual Studio Code-tekstieditoria, tarvitset [C#-lisärin](https://github.com/OmniSharp/omnisharp-vscode). _Kyseisen lisärin IntelliSense on oman kokemuksen mukaan hyvin buginen Blazorin kehitykseen, mutta ajaa asiansa._
+    - Helpommalla voit päästä käyttämällä virallista [Visual Studio-ohjelmankehitysympäristöä](https://visualstudio.microsoft.com/). Makuasioita että mitä käyttää.
+
+[**Get started with ASP.NET Core Blazor**](https://docs.microsoft.com/en-us/aspnet/core/blazor/get-started?view=aspnetcore-3.1&tabs=visual-studio)
 
 # Yleistä
 Blazor on Microsoftin kehittämä Front-end web-sovelluskehys, minkä avulla pystytään luomaan SPA-sovelluksia hyödyntämällä C#-ohjelmointikieltä ja .NET-ympäristöä. Tästä syystä websovelluskehityksen tukena on laaja kirjo Microsoftin kehittämiä kirjastoja, sekä valmis infrastruktuuri kehitystä varten.
@@ -271,19 +282,21 @@ Vaikka Blazor WebAssembly on vielä kehitysvaiheessa oleva vaihtoehto Blazor-app
 
 ### WebAssembly
 
-WebAssembly on matalan tason ohjelmointikieli, minkä avulla selainympäristössä voi ajaa korkean tason ohjelmointikieliä, kuten C ja C++, kääntämällä lähdekoodi binäärimuotoon mitä selain kykenee lukemaan. Käännetty sovellus ajetaan tämän jälkeen selaimen JavaScript-moottorin(?) päällä. Wasmin avulla pystytään luomaan optimoituja websovelluksia kielillä, joiden alkup. tarkoitus on selainten ulkopuolella ja mihin JavaScriptin suorituskyky ei riitä. WebAssembly myös toimii JavaScriptin kanssa yhteistyössä. .NET hyödyntää tämän teknologian tarjoamia mahdollisuuksia kääntämään ja ajamaan Blazor Wasmin tiedostot natiivisti selainympäristössä ilman ylimääräisten lisäosien asentamista. WebAssembly on vapaata lähdekoodia ja [toimii kaikissa moderneissa selaimissa.](https://caniuse.com/#feat=wasm)
+WebAssembly on matalan tason ohjelmointikieli, minkä avulla selainympäristössä voi ajaa korkean tason ohjelmointikieliä, kuten C ja C++, kääntämällä lähdekoodi muotoon mitä selain kykenee lukemaan. Käännetty sovellus ajetaan tämän jälkeen selaimen JavaScript-moottorin(?) päällä. Wasmin avulla pystytään luomaan optimoituja websovelluksia kielillä, joiden alkup. tarkoitus on selainten ulkopuolella ja mihin JavaScriptin suorituskyky ei riitä. WebAssembly myös toimii JavaScriptin kanssa yhteistyössä. .NET hyödyntää tämän teknologian tarjoamia mahdollisuuksia kääntämään ja ajamaan Blazor Wasmin tiedostot natiivisti selainympäristössä ilman ylimääräisten lisäosien asentamista. WebAssembly on vapaata lähdekoodia ja [toimii kaikissa moderneissa selaimissa.](https://caniuse.com/#feat=wasm)
 
 [**WebAssemblyn kotisivu**](https://webassembly.org/)
 
 [**Lisätietoa WebAssemblystä**](https://blog.logrocket.com/webassembly-how-and-why-559b7f96cd71/)
 
-[**WebAssembly Editor**](https://mbebenita.github.io/WasmExplorer/) ja [**WebAssembly Studio(BETA)**](https://webassembly.studio/) - Selaimessa toimivia IDE ratkaisuja C ja C++ kielille
+[**WebAssembly Editor**](https://mbebenita.github.io/WasmExplorer/) ja [**WebAssembly Studio(BETA)**](https://webassembly.studio/) - C ja C++ -kielten editorit selaimessa.
 
 [**D3wasm**](https://wasm.continuation-labs.com/d3demo/) - Tech demo Doom 3:sta pyörimässä selainympäristössä
 
 # Esimerkki
 
-Esimerkkiä varten luodaan uusi Blazor-projekti ```dotnet new blazorwasm -o {projektin nimi}```, mikä luo uuden projektin hakemistoineen päivineen Blazor sovellukselle, käytten WebAssembly-mallia. Toimii myös Blazor Server-mallilla kirjoittamalla ```dotnet new blazorserver -o {projektin nimi}```. Voit testata luonnin onnistumisen siirtymällä projektin hakemistoon ja ajamalla sovellus komennolla ```dotnet run```. Uusi Blazor-sovellus pitäisi näyttää alla olevan kuvan mukaiselta ja se löytyy osoitteesta [http://localhost:5000/](http://localhost:5000/).
+_Esimerkki on tehty käyttämällä Visual Studio Code-tekstieditoria. Jos käytät Visual Studio-ohjelmankehitysympäristöä, voit noudattaa [Microsoftin virallisia ohjeita](https://docs.microsoft.com/en-us/aspnet/core/blazor/get-started?view=aspnetcore-3.1&tabs=visual-studio). Oletuksena on, että olet tarkistanut [mitä tarviit](#mitä-tarviit)-kohdan huolella läpi._
+
+Esimerkkiä varten luodaan uusi Blazor-projekti komennolla ```dotnet new blazorwasm -o {projektin nimi}```, mikä luo uuden projektin hakemistoineen päivineen Blazor-sovellukselle, käytten WebAssembly-mallia. Toimii myös Blazor Server-mallilla kirjoittamalla ```dotnet new blazorserver -o {projektin nimi}```. Voit testata luonnin onnistumisen siirtymällä projektin hakemistoon ja ajamalla sovellus komennolla ```dotnet run```. Uusi Blazor-sovellus pitäisi näyttää alla olevan kuvan mukaiselta ja se löytyy osoitteesta [http://localhost:5000/](http://localhost:5000/).
 
 ![](./Kuvat/blazor_newproject.png)
 
@@ -446,10 +459,10 @@ Ylemmässä esimerkissä opit data- ja event binding-ominaisuuksista, komponentt
 
 # Tehtävä
 
-Luo esimerkin neuvoja käyttäen simppeli Todo-sovellus. Voit luoda uuden Blazor-sovelluksen tai käyttää valmista pohjaa Esimerkki-kansiosta. Sovelluksen logiikka täytyy olla omalla sivullaan, tai sitten etusivulla komponentista tuotuna. Varmista että sinulla on kaikki mitä (OTSIKKO TÄHÄN) mukaan tarvitaan Blazor-sovelluksen tekoa varten. Sovellusta varten sun täytyy luoda olio-luokka, mitä voit käyttää sitten Listin kanssa. Kun työ on valmis, zippaa se ja palauta.
+Luo esimerkin neuvoja käyttäen simppeli Todo-sovellus. Voit luoda uuden Blazor-sovelluksen tai käyttää valmista pohjaa Esimerkki-kansiosta. Sovelluksen logiikka täytyy olla omalla sivullaan, tai sitten etusivulla komponentista tuotuna. Varmista että sinulla on kaikki [mitä tarviit](#mitä-tarviit) Blazor-sovelluksen tekoa varten. Sovellusta varten sun täytyy luoda olio-luokka ja siitä taulukko. Valmista pohjaa voi käyttää esimerkkinä ja työ voi näyttää esimerkiksi [tältä](https://miibotin.github.io/blazor_page/). Kun työ on valmis, zippaa ja palauta.
 
-EXTRAA TÄHÄN!!!
+**EXTRA**
 
-Käytä JavaScript interoppia
+Upota sovelluksen juureen oma skripti-tiedosto, minkä sisällä oleva funktio tekee jotain sovellukselle. Alert-laatikon esilletuonti on yksi hyvä esimerkki.
 
-jos teet logiikan omalle sivulle, tuut tutuksi samalla myös ulkoasukomponenttien kanssa. kokeile niitä samalla kun laitat linkkiä navigaatiopalkkiin
+Jos teet Todo-logiikan omalle sivulle, tuut tutuksi samalla myös ulkoasukomponenttien kanssa. Luo hieno ulkoasu samalla, kun laitat linkkiä navigaatiopalkkiin.
