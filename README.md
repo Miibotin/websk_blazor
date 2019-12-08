@@ -2,24 +2,24 @@
 
 <img src="https://devblogs.microsoft.com/aspnet/wp-content/uploads/sites/16/2019/04/BrandBlazor_nohalo_1000x.png" alt="blazor" width="225" heigth="225">
 
-### Sisällyksen pöytä
+### Sisällysluettelo
 
-## [Yleistä](#yleistä)
->### [.NET](#NET)
->### [ASP.NET](#aspnet)
-## [Mikä on Blazor?](#mikä-on-blazor)
->### [Rakenne](#rakenne)
->### [Komponentit](#komponentit)
->>#### [@Page](#page)
->>#### [@Layout](#layout)
->### [JavaScript Interop](#javascript-interop)
-## [Blazorin mallit](#blazorin-mallit)
->### [Blazor Server](#blazor-server)
->>#### [SignalR](#signalr)
->### [Blazor WebAssembly](#blazor-webassembly)
->>#### [WebAssembly](#webassembly)
-## [Esimerkki](#esimerkki)
-## [Tehtävä](#tehtävä)
+## [Yleistä](#yleistä-1)
+>### [.NET](#NET-1)
+>### [ASP.NET](#aspnet-1)
+## [Mikä on Blazor?](#mikä-on-blazor-1)
+>### [Rakenne](#rakenne-1)
+>### [Komponentit](#komponentit-1)
+>>#### [@Page](#page-1)
+>>#### [@Layout](#layout-1)
+>### [JavaScript Interop](#javascript-interop-1)
+## [Blazorin mallit](#blazorin-mallit-1)
+>### [Blazor Server](#blazor-server-1)
+>>#### [SignalR](#signalr-1)
+>### [Blazor WebAssembly](#blazor-webassembly-1)
+>>#### [WebAssembly](#webassembly-1)
+## [Esimerkki](#esimerkki-1)
+## [Tehtävä](#tehtävä-1)
 
 
 # Mitä tarviit?
