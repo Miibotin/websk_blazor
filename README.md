@@ -4,17 +4,24 @@
 
 ### Sisällyksen pöytä
 
+## [Yleistä](#yleistä)
+### [.NET](#NET)
+[Third Example](#third-example)
+[Fourth Example](#fourth-examplehttpwwwfourthexamplecom)
+
+
 # Mitä tarviit?
 
 # Yleistä
 Blazor on Microsoftin kehittämä Front-end web-sovelluskehys, minkä avulla pystytään luomaan SPA-sovelluksia hyödyntämällä C#-ohjelmointikieltä ja .NET-ympäristöä. Tästä syystä websovelluskehityksen tukena on laaja kirjo Microsoftin kehittämiä kirjastoja, sekä valmis infrastruktuuri kehitystä varten.
 
 ## .NET
+
 Kuten edellisessä kappaleessa kerrottiin, .NET-ohjelmistokehys tarjoaa laajan valikoiman kirjastoja sovelluskehitykseen. Näistä kaikille tutuin kirjasto Ohjelmoinnin Perusteet-kurssilta lienee System, mikä on C#-kielen olennaisin kirjasto.
 ```c#
 System.Console.Writeline("Hello World!");
 ```
-_Yllä oleva esimerkki kuvastaa System-nimiavaruudesta löytyvän Console-luokan Writeline-metodia._
+_Yllä oleva esimerkki kuvastaa System-kirjastosta löytyvän Console-luokan Writeline-metodia. Normaalissa tilanteessa System-kirjasto on otettu käyttöön jo projektin luodessa, joten pelkkä ```Console.Writeline()``` riittää._
 
 Kattavan luokkakirjaston lisäksi muita .NET:n ominaisuuksia voi lukea [**tästä linkistä!**](https://docs.microsoft.com/fi-fi/dotnet/standard/)
 
@@ -24,7 +31,7 @@ Kattavan luokkakirjaston lisäksi muita .NET:n ominaisuuksia voi lukea [**täst�
 
 ## ASP.NET<div>
 
-Jos C#-kielellä halutaan luoda dynaamisia nettisivuja/applikaatioita, pelkkä .NET-kehys ei siihen riitä. Tätä varten Microsoft on kehittänyt ASP.NET-ohjelmistokehyksen .NET:n rinnalle. ASP<span>.NET on vapaata lähdekoodia ja sisältää omien (ja perus .NET:n) luokkakirjastojen lisäksi valmiita kehyksiä websovellusten tekoon, kuten [MVC](https://docs.microsoft.com/fi-fi/aspnet/core/mvc/overview?view=aspnetcore-3.0) ja [Web Forms](https://docs.microsoft.com/fi-fi/aspnet/web-forms/). Blazor on ASP.NET-perheen uusin lisäys, minkä ensimmäinen versio lisättiin ASP<span>.NET Core versiossa 3.0 (kirjoitushetkellä uusin virallinen julkaisu).
+Jos C#-kielellä halutaan luoda dynaamisia web-sovelluksia, pelkkä .NET-kehys ei siihen riitä. Tätä varten Microsoft on kehittänyt ASP.NET-ohjelmistokehyksen .NET:n rinnalle. ASP<span>.NET on vapaata lähdekoodia ja sisältää omien (ja perus .NET:n) luokkakirjastojen lisäksi valmiita kehyksiä websovellusten tekoon, kuten [MVC](https://docs.microsoft.com/fi-fi/aspnet/core/mvc/overview?view=aspnetcore-3.0) ja [Web Forms](https://docs.microsoft.com/fi-fi/aspnet/web-forms/). Blazor on ASP.NET-perheen uusin lisäys, minkä ensimmäinen versio lisättiin ASP<span>.NET Core versiossa 3.0 (kirjoitushetkellä uusin virallinen julkaisu).
 
 ```c#
 @{
@@ -65,9 +72,22 @@ _Yllä olevassa kuvassa [w3schools-sivulta](https://www.w3schools.com/asp/showfi
 
 Blazor toimii samalla tavalla kuten moni Front-end sovelluskehys, millä pystyy luomaan SPA-sovelluksia. Blazorin rakenne perustuu Razor-komponentteihin, millä voidaan hajauttaa sovelluksen kokonaisuuksia pienempiin osioihin. Tämä helpottaa koodin lukua, sekä myös mahdollistaa saman ominaisuuden käytön muualla sovelluksessa ilman uudelleenkirjoittamista.
 
-Razor-komponenttien tiedostotyyppi on .razor, mikä käyttää ASP<span>.NET:n omaa [Razor-syntaksia](https://docs.microsoft.com/fi-fi/aspnet/core/mvc/views/razor?view=aspnetcore-3.1). Razor syntaksi yhdistää Html- ja C#-kielet samaan tiedostoon, jotta komponentin logiikka ja ulkoasu pystytään tuottamaan samassa tiedostossa. ```@```-symboli erottaa C#-koodin html-koodista ja sillä voidaan sisällyttää C#-koodia html:n sisälle.
+Razor-komponenttien tiedostotyyppi on .razor, mikä käyttää ASP<span>.NET:n omaa [Razor-syntaksia](https://docs.microsoft.com/fi-fi/aspnet/core/mvc/views/razor?view=aspnetcore-3.1). Razor syntaksi yhdistää Html- ja C#-kielet samaan tiedostoon, jotta komponentin logiikka ja ulkoasu pystytään tuottamaan samassa tiedostossa. ```@```-symbolin avulla voidaan sisällyttää C#-koodia html:n sekaan.
 
-TÄHÄN KUVA RAZOR-KOODISTA, MISSÄ NÄKYY SEKÄ @OTSIKKO JA @TYYLI CLASS-ARGUMENTISSA
+``` html
+<div class="warning" style="display:@_displaymessage">@Message</div>
+```
+_Ylhäällä olevassa esimerkissä kaksi html-koodin sisään upotetusta C#-muuttujasta. Muuttujia voi jopa käyttää elementin tyylin määrittelyssä, kuten tässä esimerkissä vaikuttamaan kyseisen elementin renderöintiin._
+
+ASP<span>.NET:n vuoksi Blazorin kehitykseen on ns. pellin alla valmiina kattava infrastruktuuri, joten kehittäjä voi keskittyä vaan luomaan kattavia web-sovelluksia. Blazorin keskeisimpiä ominaisuuksia ovat:
+
+- [**Reititys**](https://docs.microsoft.com/fi-fi/aspnet/core/blazor/routing?view=aspnetcore-3.1)
+- [**Layouts**](https://docs.microsoft.com/fi-fi/aspnet/core/blazor/layouts?view=aspnetcore-3.1)
+- [**Lomakkeet ja validointi**](https://docs.microsoft.com/fi-fi/aspnet/core/blazor/forms-validation?view=aspnetcore-3.1)
+- [**Dependency injection**](https://docs.microsoft.com/fi-fi/aspnet/core/blazor/dependency-injection?view=aspnetcore-3.1)
+- [**JavaScript Interop**](https://docs.microsoft.com/fi-fi/aspnet/core/blazor/javascript-interop?view=aspnetcore-3.1)
+
+Dokumentissa käydään enemmän tai vähemmän läpi näitä ominaisuuksia. Lisää yllä mainituista ja myös muista ominaisuuksista voit lukea alla olevasta linkistä.
 
 [**Blazorin dokumentaatio**](https://docs.microsoft.com/en-us/aspnet/core/blazor/?view=aspnetcore-3.1)
 
@@ -86,17 +106,122 @@ Täysin uudesta Blazor-projektista löytyy tiedostoja ja hakemistoja, joista on 
 - **wwwroot** - sisältää sovelluksen staattisen sisällön, kuten kuvat, skriptit ja tyylittelyt. Omia skripti- ja tyylitiedostoja voi laittaa tänne.
 - **wwwroot/index.html** **(Blazor WebAssembly)** - Sovelluksen juuritiedosto, mihin sovelluksen logiikka renderöidään. Sisältää perus Html-rungon lisäksi aiemmin mainitun App-komponentin. blazor.webassembly.js-tiedosto implementoidaan mukaan, mikä hoitaa .NET-ajoympäristön, sovelluksen ja sovelluksen riippuvuuksien latauksen käyttäjälle, sekä suorittaa sovelluksen ajoa selaimessa.
 - **Pages/_Host.cshtml** **(Blazor Server)** - Sovelluksen juuritiedosto, mikä renderöinnin jälkeen lähetetään käyttäjälle. Sisältää Razor-syntaksia ja hoitaa App-komponentin renderöinnin. blazor.server.js-tiedosto implementoidaan mukaan, mikä asettaa yhteyden palvelimen ja selaimen välille SignalR:n avulla.
-- **App.razor** - Sovelluksen pääkomponentti, joka hoitaa [reitityksen](https://docs.microsoft.com/fi-fi/aspnet/core/blazor/routing?view=aspnetcore-3.1).
+- **App.razor** - Sovelluksen pääkomponentti, joka hoitaa [reitityksen](https://docs.microsoft.com/fi-fi/aspnet/core/blazor/routing?view=aspnetcore-3.1) ja [ulkoasun](https://docs.microsoft.com/fi-fi/aspnet/core/blazor/layouts?view=aspnetcore-3.1) määrittelyn.
 - **Pages** - Hakemisto komponenteille mitkä on määritetty sivuiksi ```@page```-direktiivillä, joita voidaan hakea reitityksellä.
 - **_Imports.razor** - Sisällyttää kaikki yleiset sovelluksen tarvittavat kirjastot ja luokat. Käyttäjä voi sisällyttää omia hakemistoja ja niiden komponentteja tai tiedostoja ```@using {projektin_nimi}.{hakemiston_nimi}```-esimerkillä.
 
 ## Komponentit
 
-TÄHÄN KERTOO KOMPONENTEISTA, MITÄ NIIHIN SISÄLTYY JA MITÄ NIILLÄ VOI TEHDÄ
+Kuten aiemmin jo mainittu, komponenttien avulla sovellus voidaan hajauttaa pienimpiin osioihin, helpottaen koodin luettavuutta ja vähentämään toistuvuutta. Kehittäjän ei suotta tarvitse kirjoittaa uudelleen sovelluksen ominaisuutta, jos sen voi vaan upottaa sivulta toiselle yhdellä ```<ElementinNimi />```-tägillä.
+
+### Page
+
+```@page```-direktiivillä määritetty komponentti toimii sovelluksen sivuna, minkä voi hakea sille määritetyn reitin mukaan.
+
+``` html
+@page "/"
+
+<main>
+    <h1>Hello, World!</h1>
+</main>
+```
+_Yllä olevassa esimerkissä komponentti, mille on annettu ```@page```-direktiivillä sovelluksen juuripolku._
+
+Yhdelle komponentille voi myös määrittää useamman reitin ja reiteille voi antaa parametreja.
+
+``` c#
+@page "/"
+@page "/Homepage"
+@page "/Homepage/{variable}"
+
+<main>
+    <h1>Hello, World!</h1>
+</main>
+
+@code{
+    [Parameter]
+    public string variable { get; set; } = "sivu";
+}
+```
+_Nyt sivu voidaan löytää esimerkiksi osoitteesta ```localhost:5000/Homepage/sivu```_
+
+### Layout
+
+``` html
+<!-- MainLayout.razor -->
+@inherits LayoutComponentBase
+
+<HeaderLayout />
+
+<main>
+    @Body
+</main>
+
+<FooterLayout />
+```
+_Ylhäällä olevassa esimerkissä nähdään Blazorin oletus layout-komponentti ```MainLayout``` ja sen sisälle upotetut ```Header```- ja ```FooterLayout```-komponentit. ```LayoutComponentBase```-luokasta peritty ```@Body```-syntaksilla määritetään, mihin sovelluksen sisältö renderöidään._
+
+Layout-komponenteilla voidaan määrittää sovellukselle ulkoasun, mitä koko softa tai osa sitä käyttää. Näiden avulla voidaan luoda yhtenäinen ulkoasu sovelluksen jokaiselle näkymälle. Sovellus tarvitsee yhden Layout-komponentin oletukseksi ```App.razor```-tiedostoon.
+
+``` html
+<!-- App.razor -->
+<Router AppAssembly="@typeof(Program).Assembly">
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+    </Found>
+    <NotFound>
+        <LayoutView Layout="@typeof(MainLayout)">
+            <p>Sorry, there's nothing at this address.</p>
+        </LayoutView>
+    </NotFound>
+</Router>
+```
+_Ylhäällä olevassa esimerkissä ```App.razor```-tiedosto, mikä määrittää sovelluksen reitityksen ja ulkoasun, mikäli jos tietystä reitistä löytyy tai ei löydy komponenttia. Lisää Router-komponentista voit lukea [täältä.](https://docs.microsoft.com/en-us/aspnet/core/blazor/routing?view=aspnetcore-3.1#route-templates)_
+
+Sovellukselle voi myös luoda vaihtoehtoisia näkymiä ja antaa niitä suoraan komponenttien käyttöön ```@layout {Layout-komponentin_nimi}```-direktiivillä.
+
+``` c#
+@page "/Todo"
+@layout SecondLayout
+```
+
+[**Lisää layout-komponenteista**](https://docs.microsoft.com/fi-fi/aspnet/core/blazor/layouts?view=aspnetcore-3.1)
 
 ## JavaScript Interop
 
-KERRO MITÄ INTEROP TEKEE JA MITEN SE TOIMII?
+Blazor-sovellus pystyy kutsumaan JavaScript funktioita omilla metodeillaan JavaScript Interop:n avulla. Tällä voidaan vaikuttaa DOMin tai selaimen ominaisuuksiin, joihin Blazorilla ei välttämättä (vielä) pääse käsiksi. Kehittäjällä on myös tämän myötä enemmän mahdollisuuksia soveltaa kehityksessä, eikä sovellusta rajoiteta tietyn teknologian vuoksi.
+
+Esimerkkinä käytetään yksinkertaista konsolin logausta. (Blazorilla tosin pystyy myös suoraan tulostaa konsoliin .NET:n omalla ```Console.Writeline```-metodilla)
+``` javascript
+// scripts.js
+window.helloWorld = {
+    console.log('Hello, World!') 
+}
+```
+
+Yllä oleva skripti sijaitsee ```scripts.js```-tiedostossa, mikä pitää sijoittaa sovelluksen juuritiedostoon (_WebAssembly-mallissa wwwroot/index.html ja Server-mallissa Pages_/__Host.cshtml_). Tämän jälkeen voidaan palata takaisin Razor-komponenttiin ja lisätä tarvittava logiikka. ```@inject```-direktiivillä saadaan komponentille käyttöön Interop:n ```IJSRuntime```-rajapinta, minkä avulla luodaan asynkronisia pyyntöjä JavaScript-tiedostoihin.
+
+``` html
+<!-- Index.razor -->
+@inject IJSRuntime _JSRuntime;
+```
+__Imports.razor-tiedostosta löytyy automaattisesti Microsofting Interop-kirjasto, joten erikseen ei tarvitse asentaa uusia kirjastoja ominaisuuden käyttöönottoa varten._
+
+Seuraavaksi tarvitaan vaan kirjoittaa komponenttiin pyyntö oikeaan funktioon käyttämällä juuri [dependency injection](https://docs.microsoft.com/fi-fi/aspnet/core/blazor/dependency-injection?view=aspnetcore-3.1)-ominaisuutta avulla tuotua rajapintaamme.
+
+``` c#
+// Index.razor @code-lohko
+protected override void OnInitialized()
+{
+    JSRuntime.InvokeVoidAsync("helloWorld");
+}
+```
+_```protected override void OnInitialized()``` on yksi Blazor-sovelluksen synkronisista lifecycle-metodeista. Lisää näistä voit lukea [täältä](https://docs.microsoft.com/fi-fi/aspnet/core/blazor/lifecycle?view=aspnetcore-3.1)_
+
+Ajaessa sovellusta Index.razor-tiedostosta selaimen konsoliin pitäisi tulla funktion mukainen tuloste. Lisää Interop:sta ja sen ominaisuuksista voit lukea alla olevasta linkistä.
+
+[**JavaScript Interop**](https://docs.microsoft.com/fi-fi/aspnet/core/blazor/javascript-interop?view=aspnetcore-3.1)
+
 
 # Blazorin mallit
 
@@ -122,7 +247,7 @@ Microsoftin kehittämän SignalR komponentin avulla Blazor Server pystyy kommuni
 
 ## Blazor WebAssembly
 
-Blazor Wasm, eli Blazor WebAssembly, on uudempi hostausmalli, mikä käyttää nimensä mukaisesti [WebAssembly-teknologiaa](https://webassembly.org/) pyörittämään .NET-applikaatioita suoraan selaimessa. Palvelimelta käyttäjän selaimelle ladataan C# ja Razor tiedostoista koostuvat .NET-kielikokoelmat, sekä .NET-ajoympäristö, minkä avulla Blazor Wasm pystyy konfiguroimaan kokoelmista staattiset tiedostot sovelluksen ajoa varten. Tämän toimenpiteen jälkeen Blazor applikaatio toimii ilman erillisen .NET-palvelimen riippuvuutta. Blazor Wasm:n on tarkoitus julkaista ASP<span>.NET Core 3.1 version mukana, minkä arvioidaan kirjoitushetkellä julkaistavan toukokuussa 2020.
+Blazor Wasm, eli Blazor WebAssembly, on uudempi hostausmalli, mikä käyttää nimensä mukaisesti [WebAssembly-teknologiaa](https://webassembly.org/) pyörittämään .NET-applikaatioita suoraan selaimessa. Palvelimelta käyttäjän selaimelle ladataan C# ja Razor tiedostoista koostuvat .NET assembly-tiedostot, sekä .NET-ajoympäristö, minkä avulla Blazor Wasm pystyy konfiguroimaan assembly-tiedostoista staattiset tiedostot sovelluksen ajoa varten. Tämän toimenpiteen jälkeen Blazor applikaatio toimii ilman erillisen .NET-palvelimen riippuvuutta. Blazor Wasm:n on tarkoitus julkaista ASP<span>.NET Core 3.1 version mukana, minkä arvioidaan kirjoitushetkellä julkaistavan toukokuussa 2020.
 
 ![Kuva](https://docs.microsoft.com/en-us/aspnet/core/blazor/index/_static/blazor-webassembly.png?view=aspnetcore-3.0, "Tämä on kuva")
 
@@ -150,7 +275,7 @@ Esimerkkiä varten luodaan uusi Blazor-projekti ```dotnet new blazorwasm -o {pro
 
 ![](./Kuvat/blazor_newproject.png)
 
-Jatketaan esimerkkiä lisäämällä siihen logiikkaa. Luodaan simppeli valuutanvaihto-komponentti sovellukselle. Sovellus käyttää valmiiksi asennettua Bootstrap tyylikehystä. ( _Tosin hyvin pieniä muutoksia tuli tehtyä sovelluksen globaaliin wwwroot/style.css-tiedostoon._ ) 
+Jatketaan esimerkkiä lisäämällä siihen logiikkaa. Luodaan simppeli valuutanvaihto-komponentti sovellukselle. Sovellus käyttää valmiiksi asennettua Bootstrap tyylikehystä.
 
 ``` c#
 <!-- CurrencyConverter.razor -komponentti -->
@@ -309,6 +434,10 @@ Ylemmässä esimerkissä opit data- ja event binding-ominaisuuksista, komponentt
 
 # Tehtävä
 
-Luo esimerkin neuvoja käyttäen simppeli Todo-sovellus. Sovelluksen logiikka täytyy olla omalla sivullaan, tai sitten etusivulle komponentista tuotuna. Varmista että sinulla on kaikki mitä (OTSIKKO TÄHÄN) mukaan tarvitaan Blazor-sovelluksen tekoa varten. Kun työ on valmis, zippaa se ja palauta.
+Luo esimerkin neuvoja käyttäen simppeli Todo-sovellus. Voit luoda uuden Blazor-sovelluksen tai käyttää valmista pohjaa Esimerkki-kansiosta. Sovelluksen logiikka täytyy olla omalla sivullaan, tai sitten etusivulla komponentista tuotuna. Varmista että sinulla on kaikki mitä (OTSIKKO TÄHÄN) mukaan tarvitaan Blazor-sovelluksen tekoa varten. Sovellusta varten sun täytyy luoda olio-luokka, mitä voit käyttää sitten Listin kanssa. Kun työ on valmis, zippaa se ja palauta.
 
 EXTRAA TÄHÄN!!!
+
+Käytä JavaScript interoppia
+
+jos teet logiikan omalle sivulle, tuut tutuksi samalla myös ulkoasukomponenttien kanssa. kokeile niitä samalla kun laitat linkkiä navigaatiopalkkiin
