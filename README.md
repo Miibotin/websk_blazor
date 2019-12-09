@@ -475,6 +475,6 @@ Mikäli C# ei ole entuudestaan tuttu, voit saada hyödyllisiä vinkkejä [tääl
 
 **EXTRA**
 
-Upota sovelluksen juureen oma skripti-tiedosto, minkä sisällä oleva funktio tekee jotain sovellukselle. Alert-laatikon esilletuonti on yksi hyvä esimerkki.
+Upota sovelluksen juureen oma JavaScript-tiedosto, minkä sisällä oleva funktio tekee jotain sovellukselle. Alert-laatikon esilletuonti on yksi hyvä esimerkki. Käytä [JavaScript Interop](#javascript-interop-1)-ominaisuutta kutsuaksesi tätä funktiota.
 
 Jos teet Todo-logiikan omalle sivulle, tulet tutuksi myös ulkoasukomponenttien kanssa. Luo hieno ulkoasu samalla, kun laitat linkin navigaatiopalkkiin.
